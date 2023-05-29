@@ -28,13 +28,13 @@ public class VueTraiteurController implements Initializable {
     public VBox VboxSection;
 
 
-    Article SelectedArticle;
-    Section SelectedSection;
-    Boolean ispressed = false;
+    private Article SelectedArticle;
+    private Section SelectedSection;
+    private Boolean ispressed = false;
     private double prixTotal = 0;
 
 
-    VueTraiteurPart vueTraiteurPart = new VueTraiteurPart();
+    private VueTraiteurPart vueTraiteurPart = new VueTraiteurPart();
     private Vuetraiterlistener listener ;
 
     @Override
@@ -154,6 +154,9 @@ public class VueTraiteurController implements Initializable {
 
     public Section getSelectedSection() {
         return SelectedSection;
+    }
+    public Article getSelectedArticle() {
+        return SelectedArticle;
     }
 
     public void SetSelecedArticle(Article article)

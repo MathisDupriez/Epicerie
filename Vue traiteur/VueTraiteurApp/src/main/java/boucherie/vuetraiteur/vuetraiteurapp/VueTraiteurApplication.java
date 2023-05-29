@@ -20,17 +20,27 @@ import java.util.Objects;
 /// 3. ajouter un scroolPane autour de la Vbox du panier
 /// 4 Commencer le Réseaux
 public class VueTraiteurApplication extends Application  {
+    //variable that concern the bag that will be sent in the network
     Bag bag = new Bag();
+    //variable that concern the list of section that making the shop
     List<Section> Shop = new ArrayList<>();
+    //variable that concern the used article in the code
     private final String defaultArticleImage = "C:\\Users\\Dupriez Mathis\\Desktop\\banane.jpg";
     private Article selectedArticle;
     private Article addedArticle;
+    private double quantity=0;
+    //variable that concern the VueTraiteur
     private VueTraiteurController vueTraiteurController;
+    //variable that concern the DataBase
     private final DataBaseController dataBaseController = new DataBaseController();
 
-    private double quantity=0;
+
+    //variable that concern the AddArticle
     AjouterArticleApplication ajouterArticleApplication = new AjouterArticleApplication();
+    AjouterArticleController ajouterArticleController;
+    //variable that concern the Balance
     BalanceApplication balanceApplication = new BalanceApplication();
+    //variable that concern the Network
     SocketObject socketToServer;
     @Override
     public void start(Stage stage) throws Exception {
@@ -42,71 +52,16 @@ public class VueTraiteurApplication extends Application  {
         stage.setTitle("Vue Traiteur");
         stage.setScene(scene);
         stage.show();
+
         vueTraiteurController = VueTraiteurloarder.getController();
-        BalanceControleur balanceControleur = balanceApplication.getController();
-        AjouterArticleController AjouterArticleController = ajouterArticleApplication.getController();
         vueTraiteurController.setListener(VueTraiteurSetListener());
 
+        Initialization();
 
-        balanceControleur.setListener(new BalanceControleur.VueBlancelistener()
-        {
-            @Override
-            public void onBalanceChanged() {
-                Platform.runLater(() -> {
-                    if(selectedArticle.isPerKg) {
-                        selectedArticle.setQuantity(Double.parseDouble(balanceControleur.getBalance()) / 1000);
-                        vueTraiteurController.changePoid(balanceControleur.getBalance());
-                    }
-                });
-            }
-        });
-
-        AjouterArticleController.setListener(new AjouterArticleController.AfficherArticleControllerListener()
-        {
-
-                @Override
-                public void onAddArticle() {
-                    if(!AjouterArticleController.GetAddSectionSatut()){
-                        if(AjouterArticleController.getValidation()){
-                            if(AjouterArticleController.isPerKilo()){
-                                System.out.println(Double.parseDouble(AjouterArticleController.getArticlePrice()));
-                                System.out.println(Double.parseDouble(AjouterArticleController.getArticlePrice()));
-                                addedArticle = new ArticlePerKg(AjouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(AjouterArticleController.getArticlePrice()), 0);
-                            }
-                            else{
-                                addedArticle = new ArticlePerPiece(AjouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(AjouterArticleController.getArticlePrice()), 0);
-                            }
-                            dataBaseController.AddArticle(addedArticle,vueTraiteurController.getSelectedSection().getName());
-                            vueTraiteurController.ViewAjouterArticle(addedArticle);
-                            ajouterArticleApplication.hide();
-                            AjouterArticleController.resetUI();
-                        }
-                    }
-                    else{
-                        Section AddedSection = new Section(AjouterArticleController.getArticleName());
-                        dataBaseController.AddSection(AddedSection);
-                        Shop.add(AddedSection);
-                        vueTraiteurController.addSection(AddedSection);
-                        ajouterArticleApplication.hide();
-                        AjouterArticleController.resetUI();
-                    }
-
-                }
-                @Override
-                public void onCancel() {
-                    ajouterArticleApplication.hide();
-                    AjouterArticleController.resetUI();
-                }
-                @Override
-                public void AddSection(){
-                    AjouterArticleController.SetUIForAddSection();
-                }
-            });
-
-
-
-
-        //code dedier au controle de la vue traiteur
+        BalanceControleur balanceControleur = balanceApplication.getController();
+        balanceControleur.setListener(BalanceSetListener());
+        ajouterArticleController = ajouterArticleApplication.getController();
+        ajouterArticleController.setListener(AjouterArticleSetListener());
 
     }
     public static void main(String[] args) {
@@ -170,8 +125,8 @@ public class VueTraiteurApplication extends Application  {
             }
                 @Override
                 public void articleClicked() {
-                if(selectedArticle!= vueTraiteurController.SelectedArticle){
-                    selectedArticle = vueTraiteurController.SelectedArticle;
+                if(selectedArticle!= vueTraiteurController.getSelectedArticle()){
+                    selectedArticle = vueTraiteurController.getSelectedArticle();
                     quantity=0;
                 }
                 if(!selectedArticle.isPerKg){quantity++;}
@@ -186,6 +141,58 @@ public class VueTraiteurApplication extends Application  {
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                 }
+            }
+        };
+    }
+    public BalanceControleur.VueBlancelistener BalanceSetListener(){
+        return new BalanceControleur.VueBlancelistener()
+        {
+            @Override
+            public void onBalanceChanged() {
+                Platform.runLater(() -> {
+                    if(selectedArticle.isPerKg) {
+                        selectedArticle.setQuantity(Double.parseDouble(balanceApplication.getController().getBalance()) / 1000);
+                        vueTraiteurController.changePoid(balanceApplication.getController().getBalance());
+                    }
+                });
+            }
+        };
+    }
+    public AjouterArticleController.AfficherArticleControllerListener AjouterArticleSetListener() {
+        return new AjouterArticleController.AfficherArticleControllerListener() {
+            @Override
+            public void onAddArticle() {
+                if (ajouterArticleController.GetAddSectionSatut()) {
+                    Section addedSection = new Section(ajouterArticleController.getArticleName());
+                    dataBaseController.AddSection(addedSection);
+                    Shop.add(addedSection);
+                    vueTraiteurController.addSection(addedSection);
+                } else if (ajouterArticleController.getValidation()) {
+                    Article addedArticle;
+                    if (ajouterArticleController.isPerKilo()) {
+                        addedArticle = new ArticlePerKg(ajouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(ajouterArticleController.getArticlePrice()), 0);
+                    } else {
+                        addedArticle = new ArticlePerPiece(ajouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(ajouterArticleController.getArticlePrice()), 0);
+                    }
+                    dataBaseController.AddArticle(addedArticle, vueTraiteurController.getSelectedSection().getName());
+                    vueTraiteurController.ViewAjouterArticle(addedArticle);
+                } else {
+                    return; // Ne rien faire si aucune condition n'est satisfaite
+                }
+
+                ajouterArticleApplication.hide();
+                ajouterArticleController.resetUI();
+            }
+
+            @Override
+            public void onCancel() {
+                ajouterArticleApplication.hide();
+                ajouterArticleController.resetUI();
+            }
+
+            @Override
+            public void AddSection() {
+                ajouterArticleController.SetUIForAddSection();
             }
         };
     }

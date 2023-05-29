@@ -1,0 +1,5 @@
+Poire
+2.2
+0.0
+true
+C:\Users\Dupriez Mathis\Desktop\banane.jpg
