@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minWidth="276.0" prefHeight="738.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boucherie.vueclient.vueclient.VueClientController">
+   <bottom>
+      <BorderPane prefHeight="60.0" prefWidth="276.0" BorderPane.alignment="CENTER">
+         <right>
+            <Label fx:id="labelPrixTotal" alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="34.0" prefWidth="164.0" text="0€ " textAlignment="RIGHT" textFill="#1ad937f5" textOverrun="CLIP" BorderPane.alignment="CENTER_RIGHT">
+               <BorderPane.margin>
+                  <Insets right="6.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </right>
+      </BorderPane>
+   </bottom>
+   <top>
+      <Label fx:id="LabelCommande" alignment="CENTER" text="Commande en cours" textFill="#00000093" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox fx:id="VboxPanier" alignment="TOP_CENTER" centerShape="false" prefHeight="662.0" prefWidth="280.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.720440881763527" prefHeight="740.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boucherie.vuetraiteur.vuetraiteurapp.VueTraiteurController">
+   <items>
+      <BorderPane prefHeight="673.0" prefWidth="680.0" style="-fx-border-color: gray;">
+         <center>
+            <ScrollPane fx:id="ScrollpaneVboxScetion" fitToWidth="true" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox fx:id="VboxSection" prefHeight="670.0" prefWidth="607.0" />
+               </content>
+            </ScrollPane>
+         </center>
+         <bottom>
+            <BorderPane maxHeight="60.0" minHeight="60.0" minWidth="400.0" prefHeight="60.0" prefWidth="711.0" BorderPane.alignment="CENTER">
+               <left>
+                  <FlowPane alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="labelDernierArticle" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="200.0" styleClass="dernier" text="Dernier article ">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+               </left>
+               <right>
+                  <FlowPane alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="435.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="labelPrixArticle" alignment="BOTTOM_RIGHT" prefHeight="30.0" prefWidth="70.0" textFill="#1ad937">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <FlowPane.margin>
+                              <Insets right="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="labelPoid" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" prefHeight="30.0" prefWidth="88.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <FlowPane.margin>
+                              <Insets right="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Button fx:id="buttonAjouter" mnemonicParsing="false" text="Ajouter &gt;&gt;">
+                           <FlowPane.margin>
+                              <Insets right="5.0" />
+                           </FlowPane.margin>
+                        </Button>
+                     </children>
+                  </FlowPane>
+               </right>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
+      <BorderPane minWidth="276.0" prefHeight="738.0" prefWidth="276.0">
+         <bottom>
+            <BorderPane prefHeight="60.0" prefWidth="276.0" BorderPane.alignment="CENTER">
+               <left>
+                  <Button fx:id="buttonEncaisser" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Encaisser" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <BorderPane.margin>
+                        <Insets left="5.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </left>
+               <right>
+                  <Label fx:id="labelPrixTotal" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="62.0" text="0€ " textAlignment="RIGHT" textFill="#1ad937f5" textOverrun="CLIP" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="6.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </right>
+            </BorderPane>
+         </bottom>
+         <top>
+            <Label alignment="CENTER" text="Commande en cours" textFill="#00000093" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <VBox fx:id="VboxPanier" alignment="TOP_CENTER" centerShape="false" prefHeight="662.0" prefWidth="280.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </items>
+</SplitPane>

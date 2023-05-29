@@ -1,0 +1,5 @@
+oeufs
+0.5
+0.0
+false
+C:\Users\Dupriez Mathis\Desktop\banane.jpg

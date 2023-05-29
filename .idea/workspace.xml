@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f836b27d-7f16-4fc2-a2e6-8f9dc59dcf85" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/VueTraiteurController.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2PmE9aLLNI2DKQoiHBXC13Nb8DE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Dupriez Mathis/ProjetJava/Boucherie_Controle_commande/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dupriez Mathis/ProjetJava/ChatFX&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur\VueTraiteurApp\src\main\java\boucherie\vuetraiteur\vuetraiteurapp\Modele" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur\common\src\main\java" />
+      <recent name="C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur\VueTraiteurApp\src\main\java\boucherie\vuetraiteur\vuetraiteurapp" />
+      <recent name="C:\Users\Dupriez Mathis\ProjetJava\" />
+      <recent name="C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur\Common\src\main" />
+      <recent name="C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="boucherie.vuetraiteur.vuetraiteur.Application" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="boucherie.vuetraiteur.vuetraiteurapp" />
+      <recent name="boucherie.vuetraiteur" />
+      <recent name="vuetraiteur.prog" />
+      <recent name="vuetraiteur.prog.vuetraiteur" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="vuetraiteur.prog.VueTraiteurApplication" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AjouterArticleApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="boucherie.vuetraiteur.vuetraiteurapp.AjouterArticleApplication" />
+      <module name="VueTraiteurApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="boucherie.vuetraiteur.vuetraiteurapp.DataBase.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ErrorAddingArticleApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="boucherie.vuetraiteur.vuetraiteurapp.ErrorAddingArticleApplication" />
+      <module name="VueTraiteurApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="boucherie.vuetraiteur.vuetraiteurapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServeurApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.boucherieserveur.ServeurApplication" />
+      <module name="BoucherieServeur" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.boucherieserveur.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VueClientApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="boucherie.vueclient.vueclient.VueClientApplication" />
+      <module name="VueClient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="boucherie.vueclient.vueclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VueTraiteurApplication" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="18" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="boucherie.vuetraiteur.vuetraiteurapp.VueTraiteurApplication" />
+      <module name="VueTraiteurApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in VueTraiteurApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VueTraiteurApp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.VueTraiteurApplication" />
+      <item itemvalue="Application.ServeurApplication" />
+      <item itemvalue="Application.ErrorAddingArticleApplication" />
+      <item itemvalue="Application.VueClientApplication" />
+      <item itemvalue="Application.AjouterArticleApplication" />
+      <item itemvalue="JUnit.All in VueTraiteurApp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ServeurApplication" />
+        <item itemvalue="Application.ErrorAddingArticleApplication" />
+        <item itemvalue="Application.AjouterArticleApplication" />
+        <item itemvalue="Application.VueClientApplication" />
+        <item itemvalue="JUnit.All in VueTraiteurApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f836b27d-7f16-4fc2-a2e6-8f9dc59dcf85" name="Changes" comment="" />
+      <created>1684053706653</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684053706653</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
