@@ -5,6 +5,9 @@ import boucherie.common.commonressource.View.VueTraiteurPart;
 import javafx.animation.PauseTransition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -16,9 +19,12 @@ import javafx.scene.layout.VBox;
 import boucherie.common.commonressource.Modele.*;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
+
+import static com.sun.javafx.binding.ListExpressionHelper.addListener;
 
 public class VueTraiteurController implements Initializable {
     @FXML
@@ -40,6 +46,8 @@ public class VueTraiteurController implements Initializable {
     @FXML
     public VBox VboxSection;
     public Label CommandeEnCours;
+    public ComboBox<Integer> ComboBoxQuantite;
+    public FlowPane FlowPaneAjouterArticle;
 
 
     private Article SelectedArticle;
@@ -59,12 +67,29 @@ public class VueTraiteurController implements Initializable {
         ScrollpaneVboxScetion.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         buttonAjouter.setOnMouseClicked(MouseEvent -> ajouterAuPanier());
         BooleanProperty answerReceived = new SimpleBooleanProperty(false);
+        ComboBoxQuantite.setOnAction(ActionEvent -> OnComboBoxQuantiteChanged());
+
+        labelPoid.textProperty().addListener((observable, oldValue, newValue) ->{LabelPoidChanger();} );
+
+
+
+
         buttonEncaisser.setOnMouseClicked(MouseEvent ->{
             Encaisser();
-            PauseTransition pause = new PauseTransition(Duration.INDEFINITE);
+            PauseTransition pause = new PauseTransition(Duration.seconds(15));
             pause.setOnFinished(e -> answerReceived.set(true));
             pause.play();
         });
+
+        for (int i = 1; i <= 30; i++) {
+        ComboBoxQuantite.getItems().add(i);
+        }
+        FlowPaneAjouterArticle.getChildren().remove(ComboBoxQuantite);
+        FlowPaneAjouterArticle.getChildren().add(0, ComboBoxQuantite);
+        FlowPaneAjouterArticle.getChildren().remove(labelPoid);
+        FlowPaneAjouterArticle.getChildren().add(2,labelPoid);
+        ComboBoxQuantite.setVisible(false);
+
     }
 
 
@@ -181,7 +206,9 @@ public class VueTraiteurController implements Initializable {
 
     public void SetSelecedArticle(Article article)
     {
+        System.out.println(article.isPerKg());
         SelectedArticle = article;
+        System.out.println(SelectedArticle.isPerKg());
     }
 
 
@@ -189,7 +216,9 @@ public class VueTraiteurController implements Initializable {
     public void articleClicked(Button buttonArticle){
         if(listener != null)
         {
+            System.out.println(((Article) buttonArticle.getUserData()).isPerKg());
             SetSelecedArticle((Article) buttonArticle.getUserData());
+            System.out.println(SelectedArticle.isPerKg());
             listener.articleClicked();
 
         }
@@ -199,9 +228,21 @@ public class VueTraiteurController implements Initializable {
 
         if(article.isPerKg()){
             labelPoid.setText(article.getQuantity() + " kg");
+            FlowPaneAjouterArticle.getChildren().remove(ComboBoxQuantite);
+            FlowPaneAjouterArticle.getChildren().add(0, ComboBoxQuantite);
+            FlowPaneAjouterArticle.getChildren().remove(labelPoid);
+            FlowPaneAjouterArticle.getChildren().add(2,labelPoid);
+            ComboBoxQuantite.setVisible(false);
+            labelPoid.setVisible(true);
         }
         else{
-            labelPoid.setText(article.getQuantity() + " p");
+            ComboBoxQuantite.setValue((int) article.getQuantity());
+            FlowPaneAjouterArticle.getChildren().remove(labelPoid);
+            FlowPaneAjouterArticle.getChildren().add(0,labelPoid);
+            FlowPaneAjouterArticle.getChildren().remove(ComboBoxQuantite);
+            FlowPaneAjouterArticle.getChildren().add(2, ComboBoxQuantite);
+            labelPoid.setVisible(false);
+            ComboBoxQuantite.setVisible(true);
         }
         labelDernierArticle.setText(article.getName());
         labelPrixArticle.setText(article.getArticlePrice()+ "€");
@@ -227,11 +268,26 @@ public class VueTraiteurController implements Initializable {
         CommandeEnCours.setStyle("-fx-text-fill: red");
     }
 
+    public void OnComboBoxQuantiteChanged(){
+        if(listener != null)
+        {
+            listener.OnComboBoxQuantiteChanged();
+        }
+    }
 
+    public double getQuantite() {
+        return (double) ComboBoxQuantite.getValue();
+    }
 
-
-
-
+    public void LabelPoidChanger(){
+        if(listener != null)
+        {
+            listener.LabelPoidChanger();
+        }
+    }
+    public String getLabelPoid() {
+        return labelPoid.getText();
+    }
     //this part of code is for the Listener of the view
     public interface Vuetraiterlistener
     {
@@ -241,6 +297,8 @@ public class VueTraiteurController implements Initializable {
         void articleClicked();
         void delArticle(Article article);
 
+        void OnComboBoxQuantiteChanged();
+        void LabelPoidChanger();
     }
     public void setListener(Vuetraiterlistener listener)
     {

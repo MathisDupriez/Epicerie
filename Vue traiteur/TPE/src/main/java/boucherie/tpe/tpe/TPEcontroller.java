@@ -49,7 +49,7 @@ public class TPEcontroller implements Initializable {
             ButtonNon.setVisible(true);
             setLabelText("Voulez vous confirmer le paiement de :");
             Format format = new DecimalFormat("#.##");
-            setLabelPrix(format.format(totalPrice));
+            setLabelPrix(format.format(totalPrice)+"€");
         }else{
             setLabelText("Voulez vous confirmer le paiement de :");
             setLabelPrix("");

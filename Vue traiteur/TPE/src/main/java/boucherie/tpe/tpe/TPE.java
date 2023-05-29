@@ -32,12 +32,17 @@ public class TPE extends Application {
             @Override
             public void onButtonOuiClicked() {
                 try {
-                    controller.SetDefaultMode(mode);
+
                     finalSocketToServerTPE.write(true);
+                    finalSocketToServerTPE.close();
+                    finalSocketToServerTPE = new SocketObject(new Socket("localhost", 4445));
+                    controller.SetDefaultMode(mode);
 
                 }catch (Exception e){
                     System.out.println(e.getMessage());
-                    controller.SetDefaultMode("Erreur de connexion au serveur, relancez le serveur et le client");
+                    Platform.runLater(() -> {
+                        controller.SetDefaultMode("Erreur de connexion au serveur, relancez le serveur et le client");
+                    });
                 }
 
             }
@@ -45,8 +50,11 @@ public class TPE extends Application {
             @Override
             public void onButtonNonClicked() {
                 try {
-                    controller.SetDefaultMode(mode);
+
                     finalSocketToServerTPE.write(false);
+                    finalSocketToServerTPE.close();
+                    finalSocketToServerTPE = new SocketObject(new Socket("localhost", 4445));
+                    controller.SetDefaultMode(mode);
 
                 }catch (Exception e){
                     System.out.println(e.getMessage());

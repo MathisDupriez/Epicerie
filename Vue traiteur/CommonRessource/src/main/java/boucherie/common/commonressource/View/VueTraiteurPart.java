@@ -38,7 +38,10 @@ public class VueTraiteurPart {
 
         article.setGraphic(imageView);
         article.setId(Monarticle.getName());
+        System.out.println(Monarticle.isPerKg());
         article.setUserData(Monarticle);
+        System.out.println(((Article) article.getUserData()).isPerKg());
+
         return article;
     }
     public BorderPane createBagArticle(Article item){

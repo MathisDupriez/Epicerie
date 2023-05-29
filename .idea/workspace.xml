@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f836b27d-7f16-4fc2-a2e6-8f9dc59dcf85" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Vue traiteur/BoucherieServeur/src/main/java/com/example/boucherieserveur/ServeurTpe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/resources/boucherie/tpe/tpe/TPE.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/BoucherieServeur/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/BoucherieServeur/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/BoucherieServeur/src/main/java/com/example/boucherieserveur/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/BoucherieServeur/src/main/java/com/example/boucherieserveur/ServeurApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/BoucherieServeur/src/main/java/com/example/boucherieserveur/ServeurArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/boucherie/common/commonressource/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/boucherie/common/commonressource/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/boucherie/common/commonressource/Network/SocketObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/boucherie/common/commonressource/Network/SocketObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/TPE/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/TPE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/TPEcontroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/resources/boucherie/tpe/tpe/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/AjouterArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/AjouterArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/ErrorAddingArticleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/ErrorAddingArticleApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/ErrorAddingArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/ErrorAddingArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/boucherie/common/commonressource/View/VueTraiteurPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/CommonRessource/src/main/java/boucherie/common/commonressource/View/VueTraiteurPart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/TPE.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/TPE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/TPEcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/TPE/src/main/java/boucherie/tpe/tpe/TPEcontroller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/DataBase/DataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/DataBase/DataBaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/VueTraiteurApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/VueTraiteurApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/VueTraiteurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/java/boucherie/vuetraiteur/vuetraiteurapp/VueTraiteurController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp/Error.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp/Error.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp/ErrorAddingArticle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp/ErrorAddingArticle.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp/VuetraiteurControleur.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Vue traiteur/VueTraiteurApp/src/main/resources/boucherie/vuetraiteur/vuetraiteurapp/VuetraiteurControleur.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +91,7 @@
       <recent name="vuetraiteur.prog.VueTraiteurApplication" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TPE">
+  <component name="RunManager" selected="Application.VueTraiteurApplication">
     <configuration name="ErrorAddingArticleApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

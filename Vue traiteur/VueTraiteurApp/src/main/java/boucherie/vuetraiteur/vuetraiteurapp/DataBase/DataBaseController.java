@@ -64,7 +64,7 @@ public class DataBaseController
                     try {
                         BufferedReader scanner = new BufferedReader(new FileReader(file1));
                         name = scanner.readLine();
-                        System.out.println(name);
+
                         price = Double.parseDouble(scanner.readLine());
                         quantity = Double.parseDouble(scanner.readLine());
                         isPerKg = Boolean.parseBoolean(scanner.readLine());
@@ -79,11 +79,9 @@ public class DataBaseController
 
 
                     }
-                    System.out.println(section.getArticles(section.section.size() - 1).getName());
 
                 }
             }Shop.add(section);
-            System.out.println(section.getName());
         }
         return Shop;
     }
