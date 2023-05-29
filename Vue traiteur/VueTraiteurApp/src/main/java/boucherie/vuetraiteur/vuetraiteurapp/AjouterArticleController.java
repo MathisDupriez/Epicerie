@@ -44,6 +44,14 @@ public class AjouterArticleController implements Initializable {
             listener.onCancel();
         }
     }
+    public Boolean TextFieldIsDouble(){
+        try{
+            Double.parseDouble(TextFieldPrice.getText());
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
+    }
     public String getArticleName(){
         return TextFieldName.getText();
     }

@@ -59,7 +59,7 @@
             <FlowPane alignment="CENTER" prefHeight="51.0" prefWidth="69.0" BorderPane.alignment="CENTER_RIGHT">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="C:\Users\Dupriez Mathis\Desktop\istockphoto-1148287609-612x612.jpg" />
+                     <Image url="" />
                   </ImageView>
                </children>
             </FlowPane>

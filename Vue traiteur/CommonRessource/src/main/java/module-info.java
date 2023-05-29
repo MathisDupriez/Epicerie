@@ -7,7 +7,6 @@ module boucherie.common.commonressource {
     requires org.kordamp.bootstrapfx.core;
 
     opens boucherie.common.commonressource to javafx.fxml;
-    exports boucherie.common.commonressource;
     exports boucherie.common.commonressource.Modele;
     exports boucherie.common.commonressource.Network;
     exports boucherie.common.commonressource.View;

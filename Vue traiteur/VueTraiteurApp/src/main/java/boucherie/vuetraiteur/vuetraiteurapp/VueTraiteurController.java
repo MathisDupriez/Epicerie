@@ -2,6 +2,10 @@ package boucherie.vuetraiteur.vuetraiteurapp;
 
 
 import boucherie.common.commonressource.View.VueTraiteurPart;
+import javafx.animation.PauseTransition;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -10,22 +14,32 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import boucherie.common.commonressource.Modele.*;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 public class VueTraiteurController implements Initializable {
+    @FXML
     public ScrollPane ScrollpaneVboxScetion;
+    @FXML
     public VBox VboxPanier;
+    @FXML
     public Button buttonAjouter;
+    @FXML
     public Button buttonEncaisser;
+    @FXML
     public Label labelPrixTotal;
+    @FXML
     public Label labelPrixArticle;
+    @FXML
     public Label labelPoid;
+    @FXML
     public Label labelDernierArticle;
-    public FlowPane FlowFruitEtLégume;
+    @FXML
     public VBox VboxSection;
+    public Label CommandeEnCours;
 
 
     private Article SelectedArticle;
@@ -34,7 +48,7 @@ public class VueTraiteurController implements Initializable {
     private double prixTotal = 0;
 
 
-    private VueTraiteurPart vueTraiteurPart = new VueTraiteurPart();
+    private final VueTraiteurPart vueTraiteurPart = new VueTraiteurPart();
     private Vuetraiterlistener listener ;
 
     @Override
@@ -43,8 +57,14 @@ public class VueTraiteurController implements Initializable {
         ScrollpaneVboxScetion.setFitToHeight(true);
         ScrollpaneVboxScetion.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         ScrollpaneVboxScetion.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        buttonAjouter.setOnMouseClicked(MouseEvent -> { ajouterAuPanier();});
-        buttonEncaisser.setOnMouseClicked(MouseEvent -> {Encaisser();});
+        buttonAjouter.setOnMouseClicked(MouseEvent -> ajouterAuPanier());
+        BooleanProperty answerReceived = new SimpleBooleanProperty(false);
+        buttonEncaisser.setOnMouseClicked(MouseEvent ->{
+            Encaisser();
+            PauseTransition pause = new PauseTransition(Duration.INDEFINITE);
+            pause.setOnFinished(e -> answerReceived.set(true));
+            pause.play();
+        });
     }
 
 
@@ -60,7 +80,7 @@ public class VueTraiteurController implements Initializable {
 
         BorderPane borderPane = vueTraiteurPart.createBagArticle(article);
         borderPane.setUserData(article);
-        borderPane.setOnMouseClicked(MouseEvent -> {delArticle(borderPane);});
+        borderPane.setOnMouseClicked(MouseEvent -> delArticle(borderPane));
         VboxPanier.getChildren().add(borderPane);
         prixTotal+=article.getPrice();
 
@@ -80,7 +100,7 @@ public class VueTraiteurController implements Initializable {
             // Parcourir les enfants de la VBox pour trouver le BorderPane avec userData ARTICLE
             for (Node node : VboxPanier.getChildren()) {
                 if (node instanceof BorderPane) {
-                    Article nodeUserData = (Article) ((BorderPane) node).getUserData();
+                    Article nodeUserData = (Article) node.getUserData();
 
                     if (nodeUserData != null && nodeUserData.equals(userData)&& userData.getQuantity() ==nodeUserData.getQuantity()) {
                         borderPaneToRemove = (BorderPane) node;
@@ -130,7 +150,7 @@ public class VueTraiteurController implements Initializable {
         Button ButtonAjouterArticleSection = vueTraiteurPart.CreateAddArticleButton(section,flowPane);
         ButtonAjouterArticleSection.setUserData(section.getName());
         FlowPane.setMargin(ButtonAjouterArticleSection, new Insets(5.0));
-        ButtonAjouterArticleSection.setOnMouseClicked(MouseEvent->{ajouterArticle(section);});
+        ButtonAjouterArticleSection.setOnMouseClicked(MouseEvent-> ajouterArticle(section));
         flowPane.getChildren().add(ButtonAjouterArticleSection);
         TitledPane titledPane = new TitledPane(section.getName(),flowPane);
         VboxSection.getChildren().add(titledPane);
@@ -144,7 +164,7 @@ public class VueTraiteurController implements Initializable {
                 System.out.println(nodeUserData);
                 if (nodeUserData != null && nodeUserData.equals(SelectedSection.getName())) {
                     Button buttonArticle = vueTraiteurPart.createArticle(article);
-                    buttonArticle.setOnMouseClicked(Event -> {articleClicked(buttonArticle);});
+                    buttonArticle.setOnMouseClicked(Event -> articleClicked(buttonArticle));
                     ((FlowPane) ((TitledPane) titledPane).getContent()).getChildren().add(0,buttonArticle);
                     break;
                 }
@@ -193,15 +213,20 @@ public class VueTraiteurController implements Initializable {
         labelPrixArticle.setText("");
         ispressed = false;
     }
+    public void resetTotalPrice(double prixTotal)
+    {
+        this.prixTotal = prixTotal;
+        labelPrixTotal.setText(prixTotal+ "€ ");
+    }
     public void changePoid(String poid)
     {
         labelPoid.setText(poid);
     }
-    public void resetTotalPrice()
-    {
-        prixTotal = 0;
-        labelPrixTotal.setText("0€");
+    public void ErrorConnection(){
+        CommandeEnCours.setText("Erreur de connection, veuillez relancer le serveur et l'application.");
+        CommandeEnCours.setStyle("-fx-text-fill: red");
     }
+
 
 
 

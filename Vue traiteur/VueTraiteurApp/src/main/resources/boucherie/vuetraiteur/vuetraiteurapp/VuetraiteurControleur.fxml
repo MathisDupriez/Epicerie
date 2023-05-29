@@ -89,7 +89,7 @@
             </BorderPane>
          </bottom>
          <top>
-            <Label alignment="CENTER" text="Commande en cours" textFill="#00000093" BorderPane.alignment="CENTER" />
+            <Label fx:id="CommandeEnCours" alignment="CENTER" text="Commande en cours" textFill="#00000093" BorderPane.alignment="CENTER" />
          </top>
          <center>
             <VBox fx:id="VboxPanier" alignment="TOP_CENTER" centerShape="false" prefHeight="662.0" prefWidth="280.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER" />

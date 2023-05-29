@@ -19,5 +19,14 @@ public class SocketObject {
     public <T> T read() throws IOException, ClassNotFoundException {
         return (T) this.in.readObject();
     }
+
+    public void close() {
+        try {
+            this.in.close();
+            this.out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

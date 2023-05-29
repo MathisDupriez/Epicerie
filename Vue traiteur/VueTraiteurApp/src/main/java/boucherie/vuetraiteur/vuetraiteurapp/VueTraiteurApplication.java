@@ -9,25 +9,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/// TODO: 20-05-23
-/// 1. Faire l'event quand on clique sur un article du panier
-/// 2. mettre une section dans chaque ButtonAjouterArticle
-/// 3. ajouter un scroolPane autour de la Vbox du panier
-/// 4 Commencer le Réseaux
+/// TODo:
+/// changer le choix du nombre d'article quand il est à la pièce
+/// changer la méthode encaisser pour qu'elle demande confirmation au tpe
+/// change l'affichage du nom des article pour qu'il indique les prix
+/// faire les test unitaire du modele
+/// faire la javaDoc
+/// renomer les méthodes et les variables en anglais et correctement
+///gerer quand le serveur est étient
+/// ajouter l'image a errorApplication
+
 public class VueTraiteurApplication extends Application  {
     //variable that concern the bag that will be sent in the network
-    Bag bag = new Bag();
+    private final Bag bag = new Bag();
     //variable that concern the list of section that making the shop
-    List<Section> Shop = new ArrayList<>();
+    private List<Section> Shop = new ArrayList<>();
     //variable that concern the used article in the code
-    private final String defaultArticleImage = "C:\\Users\\Dupriez Mathis\\Desktop\\banane.jpg";
+    private final String defaultArticleImage = "C:\\Users\\Dupriez Mathis\\ProjetJava\\Boucherie_Controle_commande\\Vue traiteur\\VueTraiteurApp\\src\\main\\java\\boucherie\\vuetraiteur\\vuetraiteurapp\\Image\\NoImage.png";
     private Article selectedArticle;
-    private Article addedArticle;
     private double quantity=0;
     //variable that concern the VueTraiteur
     private VueTraiteurController vueTraiteurController;
@@ -36,12 +41,16 @@ public class VueTraiteurApplication extends Application  {
 
 
     //variable that concern the AddArticle
-    AjouterArticleApplication ajouterArticleApplication = new AjouterArticleApplication();
-    AjouterArticleController ajouterArticleController;
+    private final AjouterArticleApplication ajouterArticleApplication = new AjouterArticleApplication();
+    private AjouterArticleController ajouterArticleController;
     //variable that concern the Balance
-    BalanceApplication balanceApplication = new BalanceApplication();
+    private final BalanceApplication balanceApplication = new BalanceApplication();
     //variable that concern the Network
-    SocketObject socketToServer;
+    SocketObject socketToServerArticle;
+    SocketObject socketToServerTpe;
+    // variable that concern the ErrorAddingArticle
+    private final ErrorAddingArticleApplication errorAddingArticleApplication = new ErrorAddingArticleApplication();
+
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -71,12 +80,27 @@ public class VueTraiteurApplication extends Application  {
         System.out.println("initialisation");
 
         ajouterArticleApplication.start(new Stage());
-
+        errorAddingArticleApplication.start(new Stage());
         balanceApplication.start(new Stage());
+
         System.out.println("connection au serveur");
-        Socket socket = new Socket("localhost", 8888);
-        socketToServer = new SocketObject(socket);
-        System.out.println("connection au serveur terminé");
+        try {
+            Socket socket = new Socket("localhost", 8888);
+            socketToServerArticle = new SocketObject(socket);
+            System.out.println("connection au serveur terminé : 8888");
+        }catch (Exception e){
+            vueTraiteurController.ErrorConnection();
+            System.out.println("Connexion échoué : 8888");
+        }
+        try {
+            Socket socket = new Socket("localhost", 4445);
+            socketToServerTpe = new SocketObject(socket);
+            System.out.println("connection au serveur terminé : 4445");
+        }catch (Exception e){
+            vueTraiteurController.ErrorConnection();
+            System.out.println("Connexion échoué : 4445");
+        }
+
 
         Shop = dataBaseController.LoadDataBase();
         for (Section section : Shop) {
@@ -95,68 +119,98 @@ public class VueTraiteurApplication extends Application  {
             {
                 @Override
                 public void ajouterAuPanier() {
-                if(selectedArticle != null){
-                    bag.addArticle(selectedArticle);
-                    try{
-                        socketToServer.write(bag);
-                    }catch (Exception e){
-                        System.out.println(e.getMessage());
-                    }
+                    if(selectedArticle != null){
+                        bag.addArticle(selectedArticle);
+                        try{
+                            socketToServerArticle.write(bag);
+                        }catch (Exception e){
+                            System.out.println(e.getMessage());
+                        }
 
-                    vueTraiteurController.ViewAjouterAuPanier(selectedArticle);
-                    quantity=0;
-                    vueTraiteurController.resetStatut();
+                        vueTraiteurController.ViewAjouterAuPanier(selectedArticle);
+                        quantity=0;
+                        vueTraiteurController.resetStatut();
+                    }
                 }
-            }
                 @Override
                 public void Encaisser() {
-                vueTraiteurController.ViewEncaisser();
-                vueTraiteurController.resetTotalPrice();
-                bag.clearBag();
-                try{
-                    socketToServer.write(bag);
-                }catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    try {
+                        Boolean tpe = true;
+                        socketToServerTpe.write(tpe);
+                        socketToServerTpe.close();
+                        socketToServerTpe = new SocketObject(new Socket("localhost", 4445));
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    Boolean answer = null;
+                    try {
+                        socketToServerTpe.write(null);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                    while(answer == null) {
+                        try {
+                            System.out.println("attente de la réponse du tpe");
+                            answer = socketToServerTpe.read();
+                            System.out.println(answer);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
+
+
+                    if(answer != null&&answer){
+                        vueTraiteurController.ViewEncaisser();
+                        vueTraiteurController.resetTotalPrice(0);
+                        bag.clearBag();
+                        try{
+                            socketToServerArticle.write(bag);
+                        }catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    else{
+                        return;
+                    }
                 }
-            }
                 @Override
                 public void ajouterArticle() {
                 ajouterArticleApplication.show();
             }
                 @Override
                 public void articleClicked() {
-                if(selectedArticle!= vueTraiteurController.getSelectedArticle()){
-                    selectedArticle = vueTraiteurController.getSelectedArticle();
-                    quantity=0;
+                    if(selectedArticle!= vueTraiteurController.getSelectedArticle()){
+                        selectedArticle = vueTraiteurController.getSelectedArticle();
+                        quantity=0;
+                    }
+                    if(!selectedArticle.isPerKg){quantity++;}
+                    selectedArticle.setQuantity(quantity);
+                    vueTraiteurController.ViewArticleClicked(selectedArticle);
                 }
-                if(!selectedArticle.isPerKg){quantity++;}
-                selectedArticle.setQuantity(quantity);
-                vueTraiteurController.ViewArticleClicked(selectedArticle);
-            }
                 @Override
                 public void delArticle(Article article){
-                bag.removeItem(article);
-                try{
-                    socketToServer.write(bag);
-                }catch (Exception e){
-                    System.out.println(e.getMessage());
+                    bag.removeItem(article);
+                    vueTraiteurController.resetTotalPrice(bag.getTotalPrice());
+
+                    try{
+                        socketToServerArticle.write(bag);
+                    }catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
                 }
-            }
         };
     }
     public BalanceControleur.VueBlancelistener BalanceSetListener(){
-        return new BalanceControleur.VueBlancelistener()
-        {
-            @Override
-            public void onBalanceChanged() {
-                Platform.runLater(() -> {
-                    if(selectedArticle.isPerKg) {
-                        selectedArticle.setQuantity(Double.parseDouble(balanceApplication.getController().getBalance()) / 1000);
-                        vueTraiteurController.changePoid(balanceApplication.getController().getBalance());
-                    }
-                });
-            }
-        };
+        return () -> Platform.runLater(() -> {
+
+                selectedArticle.setQuantity(Double.parseDouble(balanceApplication.getController().getBalance()) / 1000);
+                vueTraiteurController.changePoid(balanceApplication.getController().getBalance());
+
+        });
     }
     public AjouterArticleController.AfficherArticleControllerListener AjouterArticleSetListener() {
         return new AjouterArticleController.AfficherArticleControllerListener() {
@@ -168,14 +222,21 @@ public class VueTraiteurApplication extends Application  {
                     Shop.add(addedSection);
                     vueTraiteurController.addSection(addedSection);
                 } else if (ajouterArticleController.getValidation()) {
-                    Article addedArticle;
-                    if (ajouterArticleController.isPerKilo()) {
-                        addedArticle = new ArticlePerKg(ajouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(ajouterArticleController.getArticlePrice()), 0);
-                    } else {
-                        addedArticle = new ArticlePerPiece(ajouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(ajouterArticleController.getArticlePrice()), 0);
+                    if(ajouterArticleController.TextFieldIsDouble()){
+                        Article addedArticle;
+                        if (ajouterArticleController.isPerKilo()) {
+                            addedArticle = new ArticlePerKg(ajouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(ajouterArticleController.getArticlePrice()), 0);
+                        } else {
+                            addedArticle = new ArticlePerPiece(ajouterArticleController.getArticleName(), defaultArticleImage, Double.parseDouble(ajouterArticleController.getArticlePrice()), 0);
+                        }
+                        dataBaseController.AddArticle(addedArticle, vueTraiteurController.getSelectedSection().getName());
+                        vueTraiteurController.ViewAjouterArticle(addedArticle);
                     }
-                    dataBaseController.AddArticle(addedArticle, vueTraiteurController.getSelectedSection().getName());
-                    vueTraiteurController.ViewAjouterArticle(addedArticle);
+                    else{
+                        ajouterArticleApplication.hide();
+                        errorAddingArticleApplication.show();
+                    }
+
                 } else {
                     return; // Ne rien faire si aucune condition n'est satisfaite
                 }
