@@ -2,4 +2,4 @@ oeufs
 0.5
 0.0
 false
-C:\Users\Dupriez Mathis\Desktop\banane.jpg
+C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur\VueTraiteurApp\src\main\java\boucherie\vuetraiteur\vuetraiteurapp\Image\oeuf.jpeg

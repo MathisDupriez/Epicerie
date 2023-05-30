@@ -16,13 +16,9 @@ import java.util.List;
 import java.util.Objects;
 
 /// TODo:
-/// corriger l'erreur quand la balance change de poids
-/// change l'affichage du nom des article pour qu'il indique les prix
 /// faire les test unitaire du modele
 /// faire la javaDoc
 /// renomer les méthodes et les variables en anglais et correctement
-/// ajouter l'image a errorApplication
-///passer la balance en gramme
 
 public class VueTraiteurApplication extends Application  {
     //variable that concern the bag that will be sent in the network
@@ -129,6 +125,7 @@ public class VueTraiteurApplication extends Application  {
                         vueTraiteurController.ViewAjouterAuPanier(selectedArticle);
                         quantity=0;
                         vueTraiteurController.resetStatut();
+                        balanceApplication.getController().reset();
                     }
                 }
                 @Override
@@ -208,23 +205,15 @@ public class VueTraiteurApplication extends Application  {
                     vueTraiteurController.ViewArticleClicked(selectedArticle);
                 }
 
-                @Override
-                public void LabelPoidChanger() {
 
-                    selectedArticle= vueTraiteurController.getSelectedArticle();
-                    System.out.println(selectedArticle.isPerKg);
-                    if(selectedArticle != null){
-                        String text = vueTraiteurController.getLabelPoid();
-                        String numericPart = text.replaceAll("[^0-9.]", ""); // Supprime tous les caractères non numériques sauf le point décimal
-                        double value = Double.parseDouble(numericPart);
-                        selectedArticle.setQuantity(Double.parseDouble(balanceApplication.getController().getBalance()) / 1000);
-                    }
-                }
             };
     }
     public BalanceControleur.VueBlancelistener BalanceSetListener(){
         return () -> Platform.runLater(() -> {
-                vueTraiteurController.changePoid(balanceApplication.getController().getBalance());
+                if(selectedArticle != null&& !Objects.equals(balanceApplication.getController().getBalance(), "")){
+                    selectedArticle.setQuantity(Double.parseDouble(balanceApplication.getController().getBalance())/1000);
+                    vueTraiteurController.ViewArticleClicked(selectedArticle);
+                }
         });
     }
     public AjouterArticleController.AfficherArticleControllerListener AjouterArticleSetListener() {

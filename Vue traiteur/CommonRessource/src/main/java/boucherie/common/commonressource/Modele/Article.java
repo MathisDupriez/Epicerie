@@ -24,6 +24,11 @@ public abstract class  Article implements Serializable {
 
         this.name = name;
     }
+    public Article(String name, double quantity){
+        this.quantity = quantity;
+        myPicture = new Image("C:\\Users\\Dupriez Mathis\\Desktop\\banane.jpg");
+        this.name = name;
+    }
     public String getImagePath() {return ImagePath;}
     public double getPrice() {return 0;}
     public double getArticlePrice() {return 0;};

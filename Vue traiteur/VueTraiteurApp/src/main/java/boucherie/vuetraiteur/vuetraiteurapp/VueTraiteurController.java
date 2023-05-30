@@ -69,14 +69,12 @@ public class VueTraiteurController implements Initializable {
         BooleanProperty answerReceived = new SimpleBooleanProperty(false);
         ComboBoxQuantite.setOnAction(ActionEvent -> OnComboBoxQuantiteChanged());
 
-        labelPoid.textProperty().addListener((observable, oldValue, newValue) ->{LabelPoidChanger();} );
-
 
 
 
         buttonEncaisser.setOnMouseClicked(MouseEvent ->{
             Encaisser();
-            PauseTransition pause = new PauseTransition(Duration.seconds(15));
+            PauseTransition pause = new PauseTransition(Duration.UNKNOWN);
             pause.setOnFinished(e -> answerReceived.set(true));
             pause.play();
         });
@@ -279,12 +277,7 @@ public class VueTraiteurController implements Initializable {
         return (double) ComboBoxQuantite.getValue();
     }
 
-    public void LabelPoidChanger(){
-        if(listener != null)
-        {
-            listener.LabelPoidChanger();
-        }
-    }
+
     public String getLabelPoid() {
         return labelPoid.getText();
     }
@@ -298,7 +291,6 @@ public class VueTraiteurController implements Initializable {
         void delArticle(Article article);
 
         void OnComboBoxQuantiteChanged();
-        void LabelPoidChanger();
     }
     public void setListener(Vuetraiterlistener listener)
     {

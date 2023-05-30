@@ -22,7 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="VueTraiteurApp" options="--add-exports javafx.base/com.sun.javafx.binding=boucherie.vuetraiteur.vuetraiteurapp" />
+      <module name="VueTraiteurApp" options="" />
     </option>
   </component>
 </project>

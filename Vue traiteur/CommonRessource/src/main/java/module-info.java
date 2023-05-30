@@ -5,6 +5,7 @@ module boucherie.common.commonressource {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires junit;
 
     opens boucherie.common.commonressource to javafx.fxml;
     exports boucherie.common.commonressource.Modele;

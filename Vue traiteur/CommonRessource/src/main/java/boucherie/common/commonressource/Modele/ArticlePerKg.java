@@ -8,6 +8,10 @@ public class ArticlePerKg extends Article implements Serializable {
         super(name, path,Quantity);
         this.pricePerKg = pricePerKilo;
     }
+    public ArticlePerKg(String name,double pricePerKilo,double Quantity) {
+        super(name,Quantity);
+        this.pricePerKg = pricePerKilo;
+    }
     @Override
     public double getPrice() {return pricePerKg*quantity;}
     @Override

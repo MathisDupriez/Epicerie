@@ -2,4 +2,4 @@ Scampis
 27.99
 0.0
 true
-C:\Users\Dupriez Mathis\Desktop\banane.jpg
+C:\Users\Dupriez Mathis\ProjetJava\Boucherie_Controle_commande\Vue traiteur\VueTraiteurApp\src\main\java\boucherie\vuetraiteur\vuetraiteurapp\Image\scampi.jpeg

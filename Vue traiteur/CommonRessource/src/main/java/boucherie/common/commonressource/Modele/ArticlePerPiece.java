@@ -8,6 +8,10 @@ public class ArticlePerPiece extends Article implements Serializable {
         super( name, path,quantity);
         this.pricePerPiece = pricePerPiece;
     }
+    public ArticlePerPiece(String name,double pricePerKilo,double Quantity) {
+        super(name,Quantity);
+        this.pricePerPiece = pricePerKilo;
+    }
     @Override
     public double getPrice() {
         return quantity*pricePerPiece;

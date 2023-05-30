@@ -32,6 +32,11 @@ public class BalanceControleur implements Initializable {
     public void setListener(VueBlancelistener listener) {
         this.listener = listener;
     }
+
+    public void reset() {
+        TextfieldPoid.setText("");
+    }
+
     public interface VueBlancelistener{
         void onBalanceChanged();
     }

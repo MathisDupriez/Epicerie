@@ -11,7 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class VueTraiteurPart {
     public VueTraiteurPart()
@@ -19,30 +21,55 @@ public class VueTraiteurPart {
 
     }
     public Button createArticle(Article Monarticle)
-    {
-        Button article = new Button(Monarticle.getName());
-        article.setAlignment(Pos.BOTTOM_CENTER);
-        article.setContentDisplay(ContentDisplay.TOP);
-        article.setMnemonicParsing(false);
-        article.setPrefHeight(150.0);
-        article.setPrefWidth(119.0);
+    {// Création du ArticleName pour les deux lignes de texte
+        Label ArticleName = new Label(Monarticle.getName());
+        Label ArticlePrice;
+        ArticleName.setAlignment(Pos.BOTTOM_CENTER);
+        if(Monarticle.isPerKg())
+        {
+            ArticlePrice = new Label(Monarticle.getArticlePrice()+"€/Kg");
+        }
+        else
+        {
+            ArticlePrice = new Label(Monarticle.getArticlePrice()+"€/p");
+        }
 
+        ArticlePrice.setAlignment(Pos.BOTTOM_CENTER);
+
+        // Création de l'ImageView
         ImageView imageView = new ImageView();
-        imageView.setFitHeight(150.0);
-        imageView.setFitWidth(103.0);
+        imageView.setFitHeight(116);
+        Text tempText = new Text(Monarticle.getName());
+        tempText.setFont(ArticleName.getFont());
+        double width = tempText.getLayoutBounds().getWidth();
+
+
+        imageView.setFitWidth(103);
         imageView.setPickOnBounds(true);
         imageView.setSmooth(false);
 
         Image image = Monarticle.getPicture();
         imageView.setImage(image);
 
-        article.setGraphic(imageView);
-        article.setId(Monarticle.getName());
-        System.out.println(Monarticle.isPerKg());
-        article.setUserData(Monarticle);
-        System.out.println(((Article) article.getUserData()).isPerKg());
+        // Création du VBox pour empiler l'image et le ArticleName
+        VBox vbox = new VBox(imageView, ArticleName, ArticlePrice);
+        vbox.setAlignment(Pos.CENTER);
 
-        return article;
+        // Création du bouton
+        Button button = new Button();
+        button.setPrefHeight(150);
+        button.setMinWidth(width + 4); // Largeur du label + 2 pixels de chaque côté
+        button.setMaxWidth(Region.USE_PREF_SIZE);
+        button.setPadding(new Insets(0, 5, 0, 5)); // 2 pixels de padding à gauche et à droite
+        button.setContentDisplay(ContentDisplay.TOP);
+        button.setGraphic(vbox);
+
+        // Configuration du bouton
+        button.setId(Monarticle.getName());
+        System.out.println(Monarticle.isPerKg());
+        button.setUserData(Monarticle);
+        System.out.println(((Article) button.getUserData()).isPerKg());
+        return button;
     }
     public BorderPane createBagArticle(Article item){
         BorderPane borderPane = new BorderPane();
